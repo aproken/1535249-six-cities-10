@@ -1,5 +1,11 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import MainPage from '../../pages/main-page/main';
+
+type AppPageProps = {
+  offersCount: number;
 }
 
-export default App;
+export default function App({offersCount}: AppPageProps): JSX.Element {
+  return (
+    <MainPage offersCount = {offersCount}/>
+  );
+}
