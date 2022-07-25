@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-import PlaceCard from '../../components/place-card/place-card';
+import PlacesList from '../../components/places-lists/cities-list';
 import { LogoLocation, Logo } from '../../components/logo/logo';
+import { Offers } from '../../types/offer';
 
 type ManePageProps = {
   offersCount: number;
+  offers: Offers;
 }
 
-export default function MainPage({offersCount}: ManePageProps) {
+export default function MainPage({offersCount, offers}: ManePageProps) {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -94,13 +96,7 @@ export default function MainPage({offersCount}: ManePageProps) {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

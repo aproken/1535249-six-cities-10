@@ -1,7 +1,13 @@
 import { LogoLocation, Logo } from '../../components/logo/logo';
-import PlaceCard from '../../components/place-card/place-card';
+import FavoritesList from '../../components/places-lists/favorites-list';
+import { Offers } from '../../types/offer';
 
-export default function FavoritesPage(): JSX.Element {
+type FavoritePageProps = {
+  offers: Offers;
+}
+
+export default function FavoritesPage(props: FavoritePageProps): JSX.Element {
+  const {offers} = props;
   return (
     <div className="page">
       <header className="header">
@@ -35,34 +41,7 @@ export default function FavoritesPage(): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#todo">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCard />
-                  <PlaceCard />
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#todo">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCard />
-                </div>
-              </li>
-            </ul>
+            <FavoritesList offers={offers}/>
           </section>
         </div>
       </main>
