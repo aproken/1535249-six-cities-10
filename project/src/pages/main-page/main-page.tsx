@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import PlacesList from '../../components/places-lists/cities-list';
 import { LogoLocation, Logo } from '../../components/logo/logo';
 import { Offers } from '../../types/offer';
+import Map from '../../components/map/map';
 
 type ManePageProps = {
-  offersCount: number;
   offers: Offers;
 }
 
-export default function MainPage({offersCount, offers}: ManePageProps) {
+export default function MainPage(props: ManePageProps) {
+  const {offers} = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -80,7 +81,7 @@ export default function MainPage({offersCount, offers}: ManePageProps) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -99,7 +100,9 @@ export default function MainPage({offersCount, offers}: ManePageProps) {
               <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map city={offers[0].city} offers={offers} selectedOffer={offers[0]}/>
+              </section>
             </div>
           </div>
         </div>
