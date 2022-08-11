@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
 import { offers } from './mocks/offers';
+import { nearOffers } from './mocks/near-offers';
 import { comments } from './mocks/review';
 
 const root = ReactDOM.createRoot(
@@ -14,6 +15,7 @@ root.render(
     <App
       offers = {offers}
       reviews = {comments}
+      nearOffers = {nearOffers}
     />
   </React.StrictMode>,
 );

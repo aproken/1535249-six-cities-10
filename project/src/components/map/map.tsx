@@ -1,5 +1,6 @@
 import { useRef, useEffect, MutableRefObject } from 'react';
 import { Icon, Marker} from 'leaflet';
+import classNames from 'classnames';
 
 import { City, Offer, Offers } from '../../types/offer';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
@@ -11,7 +12,13 @@ type MapProps = {
   city: City;
   offers: Offers;
   selectedOffer: Offer | undefined ;
+  location: MapLocation;
 };
+
+export enum MapLocation {
+  cities = 'cities',
+  nearPlaces = 'nearPlaces',
+}
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -26,9 +33,13 @@ const currentCustomIcon = new Icon({
 });
 
 export default function Map(props: MapProps): JSX.Element {
-  const {city, offers, selectedOffer} = props;
+  const {city, offers, selectedOffer, location} = props;
   const mapRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
   const map = useMap(mapRef, city);
+  const mapClassName = classNames('map', {
+    'cities__map': location === MapLocation.cities,
+    'property__map': location === MapLocation.nearPlaces,
+  });
 
   useEffect(() => {
 
@@ -50,9 +61,9 @@ export default function Map(props: MapProps): JSX.Element {
 
   return (
     <section
-      style={{width:'512px', height: '512px'}}
+      //style={{width:'512px', height: '512px'}}
       ref={mapRef}
-      className='cities__map map'
+      className={mapClassName}
     >
     </section>
   );

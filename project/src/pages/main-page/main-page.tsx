@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import PlacesList from '../../components/places-lists/cities-list';
 import { LogoLocation, Logo } from '../../components/logo/logo';
+import Map, { MapLocation } from '../../components/map/map';
 import { Offers } from '../../types/offer';
-import Map from '../../components/map/map';
 
 type ManePageProps = {
   offers: Offers;
@@ -100,9 +100,7 @@ export default function MainPage(props: ManePageProps) {
               <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map city={offers[0].city} offers={offers} selectedOffer={offers[0]}/>
-              </section>
+              <Map city={offers[0].city} offers={offers} selectedOffer={offers[0]} location={MapLocation.cities}/>
             </div>
           </div>
         </div>

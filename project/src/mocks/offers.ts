@@ -26,7 +26,7 @@ export const offers: Offers = [
       'img/apartment-01.jpg'
     ],
     'isFavorite': true,
-    'isPremium': false,
+    'isPremium': true,
     'location': {
       'latitude': 52.3909553943508,
       'longitude': 4.85309666406198,
@@ -102,7 +102,7 @@ export const offers: Offers = [
       'img/apartment-02.jpg'
     ],
     'isFavorite': false,
-    'isPremium': false,
+    'isPremium': true,
     'location': {
       'latitude': 52.3909553943508,
       'longitude': 4.929309666406198,
