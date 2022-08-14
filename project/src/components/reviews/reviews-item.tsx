@@ -1,5 +1,5 @@
 import { Review } from '../../types/review';
-import { RatingIndex} from '../../const';
+import { RatingIndex } from '../../const';
 
 type ReviewsItemProps = {
   review: Review,

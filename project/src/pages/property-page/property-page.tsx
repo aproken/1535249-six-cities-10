@@ -2,18 +2,21 @@ import { Link} from 'react-router-dom';
 import classNames from 'classnames';
 import { LogoLocation, Logo } from '../../components/logo/logo';
 import ReviewsForm from '../../components/reviews/reviews-form';
-import ReviewsItem from '../../components/reviews/reviews-item';
-import { Offer } from '../../types/offer';
+import ReviewsList from '../../components/reviews/reviews-list';
+import Map, { MapLocation } from '../../components/map/map';
+import NearPlacesList from '../../components/places-lists/near-places-list';
+import { Offer, Offers } from '../../types/offer';
 import { Review } from '../../types/review';
 import { RatingIndex } from '../../const';
 
 type PropertyPagProps = {
   offer: Offer,
   reviews: Review[],
+  nearOffers: Offers,
 }
 
 export default function PropertyPage(props: PropertyPagProps): JSX.Element {
-  const {offer, reviews} = props;
+  const {offer, reviews, nearOffers} = props;
   const {images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, description, host, } = offer;
   const buttonFavoriteClass = classNames('property__bookmark-button button', {
     'place-card__bookmark-button--active': isFavorite,
@@ -133,17 +136,19 @@ export default function PropertyPage(props: PropertyPagProps): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <ul className="reviews__list">
-                  {
-                    reviews.map((comment) => <ReviewsItem review={comment} key={comment.id}/>)
-                  }
-                </ul>
+                <ReviewsList reviews = {reviews}/>
                 <ReviewsForm />
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <Map city={offer.city} offers={[...nearOffers, offer]} selectedOffer={offer} location={MapLocation.nearPlaces}/>
         </section>
+        <div className="container">
+          <section className="near-places places">
+            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <NearPlacesList nearOffers={nearOffers}/>
+          </section>
+        </div>
       </main>
     </div>
   );

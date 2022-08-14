@@ -26,12 +26,16 @@ export default function PlaceCard(props: PropertyPageProps): JSX.Element {
     'near-places__card': location === PlaceCardLocation.nearPlaces,
   });
 
+  const placeCardImageClass = classNames('place-card__image-wrapper', {
+    'favorites__image-wrapper': location === PlaceCardLocation.favorites,
+    'cities__image-wrapper': location === PlaceCardLocation.cities,
+    'near-places__image-wrapper': location === PlaceCardLocation.nearPlaces,
+  });
+
   return (
     <article className={placeCardClass} onMouseOver={onMouseOver}>
-      <div className="place-card__mark">
-        {isPremium ? <span>Premium</span> : ''}
-      </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
+      <div className={placeCardImageClass}>
         <Link to="#todo">
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>

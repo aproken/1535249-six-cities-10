@@ -13,4 +13,6 @@ export type Review = {
   user: User,
 };
 
+export type Reviews = Review[];
+
 

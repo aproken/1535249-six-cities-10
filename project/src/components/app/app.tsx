@@ -13,11 +13,12 @@ import { Review } from '../../types/review';
 
 type AppPageProps = {
   offers: Offers;
+  nearOffers: Offers;
   reviews: Review[],
 }
 
 export default function App(props: AppPageProps): JSX.Element {
-  const {offers, reviews} = props;
+  const {offers, nearOffers, reviews} = props;
   return (
     <BrowserRouter>
       <Routes>
@@ -36,7 +37,7 @@ export default function App(props: AppPageProps): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<PropertyPage offer={offers[0]} reviews={reviews}/>}
+          element={<PropertyPage offer={offers[0]} reviews={reviews} nearOffers={nearOffers}/>}
         />
         <Route
           path='*'
